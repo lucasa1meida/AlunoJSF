@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<link rel="stylesheet"
+		href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js" />
+</h:head>
+<h:body>
+
+	<h2 style="text-align: center; margin: auto; background: ghostwhite;">Cadastro de Alunos</h2>
+
+	<p:panel style="background: ghostwhite;">
+		<h:form id="form">
+			<p:panelGrid columns="2" >
+
+				<h:outputText value="Nome" />
+				<p:inputText value="#{mb.aluno.nome}" required="true" />
+				<h:outputText value="Disciplina" />
+				<p:inputText value="#{mb.aluno.disciplina}" required="true" />
+				<h:outputText value="Nota 1" />
+				<p:inputText value="#{mb.aluno.nota1}" required="true" />
+				<h:outputText value="Nota 2" />
+				<p:inputText value="#{mb.aluno.nota2}" required="true" />
+				<p:commandButton value="Calcular Media" action="#{mb.media}" update=":form" ajax="true"></p:commandButton>
+				<p:inputText value="#{mb.aluno.media}" readonly="true" />
+				<p:commandButton value="Gravar" action="#{mb.gravar}" update=":form" ajax="true"></p:commandButton>
+
+			</p:panelGrid>
+		</h:form>
+	</p:panel>
+
+
+	<p:dataTable id="table1" value="#{mb.alunos}" var="p" rows="10" paginator="true">
+
+		<p:column headerText="Nome">
+			<h:outputText value="#{p.nome}" />
+		</p:column>
+		<p:column headerText="Disciplina">
+			<h:outputText value="#{p.disciplina}" />
+		</p:column>
+		<p:column headerText="Nota 1">
+			<h:outputText value="#{p.nota1}" />
+		</p:column>
+		<p:column headerText="Nota 2">
+			<h:outputText value="#{p.nota2}" />
+		</p:column>
+		<p:column headerText="Media">
+			<h:outputText value="#{p.media}" />
+		</p:column>
+	
+	</p:dataTable>
+
+</h:body>
+</html>
